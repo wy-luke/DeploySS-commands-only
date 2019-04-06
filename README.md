@@ -13,17 +13,23 @@ server端
 - shadowsocks
 - 系统支持: CentOS6+ / Debian6+ / Ubuntu14+
 
-`wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh`
+```bash
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
+```
 
 - shadowsocksr
 - 系统支持: CentOS6+ / Debian6+ / Ubuntu14+
-`wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh && chmod +x ssr.sh && bash ssr.sh`
+```bash
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh && chmod +x ssr.sh && bash ssr.sh
+```
 ----------------------------
 BBR安装
 ----------------------------
 BBR魔改版只支持Debian 8
 
-`wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh`
+```bansh
+wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
+```
     
 在删除内核环节, 选择**NO**
 ----------------------------
@@ -31,11 +37,17 @@ BBR魔改版只支持Debian 8
 Client端(Arch Linux)
 ----------------------------
 shadowsocks-libev安装
-`sudo pacman -Syu shadowsocks-libev`
+```bash
+sudo pacman -Syu shadowsocks-libev
+```
 
 配置
-'sudo touch /etc/shadowsocks/ss.json'
-'sudo nano /etc/shadowsocks/ss.json'
+```bash
+sudo touch /etc/shadowsocks/ss.json
+```
+```bash
+sudo nano /etc/shadowsocks/ss.json
+```
 
 ```
 {
@@ -49,6 +61,10 @@ shadowsocks-libev安装
 }
 ```
 启动
-'sudo systemctl start shadowsocks-libev@ss'
+```bash
+sudo systemctl start shadowsocks-libev@ss
+```
 设置开机启动
-'sudo systemctl enable shadowsock-libevs@ss'
+```bash
+sudo systemctl enable shadowsock-libevs@ss
+```
