@@ -7,41 +7,40 @@
 在这里统一一下所有用得到的命令, 方便以后查阅
 
 关于VPS的基础知识等等都不在此赘述, 只包用得到的命令
------------------------------
+
+
 server端
 -----------------------------
-- shadowsocks
+##shadowsocks
 - 系统支持: CentOS6+ / Debian6+ / Ubuntu14+
 
 ```bash
 wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
 ```
 
-- shadowsocksr
+##shadowsocks-R
 - 系统支持: CentOS6+ / Debian6+ / Ubuntu14+
 ```bash
 wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh && chmod +x ssr.sh && bash ssr.sh
 ```
-----------------------------
-BBR安装
-----------------------------
-BBR魔改版只支持Debian 8
 
+##BBR安装
+- BBR魔改版只支持Debian 8
 ```bansh
 wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
 ```
-    
+
 在删除内核环节, 选择**NO**
-----------------------------
+
 
 Client端(Arch Linux)
 ----------------------------
-shadowsocks-libev安装
+##shadowsocks-libev安装
 ```bash
 sudo pacman -Syu shadowsocks-libev
 ```
 
-配置
+##配置
 ```bash
 sudo touch /etc/shadowsocks/ss.json
 ```
@@ -53,18 +52,18 @@ sudo nano /etc/shadowsocks/ss.json
 {
 	"server":"remote-shadowsocks-server-ip-addr",
 	"server_port":444,
-  "password":"your-passwd",
+	"password":"your-passwd",
 	"local_address":"127.0.0.1",
 	"local_port":1080,
 	"timeout":300,
 	"method":"chacha20-ietf",
 }
 ```
-启动
+##启动
 ```bash
 sudo systemctl start shadowsocks-libev@ss
 ```
-设置开机启动
+##设置开机启动
 ```bash
 sudo systemctl enable shadowsock-libevs@ss
 ```
