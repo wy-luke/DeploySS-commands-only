@@ -7,6 +7,7 @@
 在这里统一一下所有用得到的命令, 方便以后查阅
 
 关于VPS的基础知识等等都不在此赘述, 只包含用得到的命令
+***
 
 ## server端
 
@@ -35,6 +36,7 @@ wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-
 ```
 
 在删除内核环节, 选择**NO**
+***
 
 ## Client端(Arch Linux)
 
@@ -54,17 +56,17 @@ sudo touch /etc/shadowsocks/ss.json
 sudo nano /etc/shadowsocks/ss.json
 ```
 
->
+```test
 {
     "server":"remote-shadowsocks-server-ip-addr",
-    "server_port":444,
+    "server_port":443,
     "password":"your-passwd",
     "local_address":"127.0.0.1",
     "local_port":1080,
     "timeout":300,
-    "method":"chacha20-ietf",
+    "method":"chacha20-poly-ietf",
 }
->
+```
 
 ### 启动
 
