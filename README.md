@@ -79,3 +79,8 @@ sudo systemctl start shadowsocks-libev@ss
 ```bash
 sudo systemctl enable shadowsock-libevs@ss
 ```
+
+### 关闭开启启动
+```bash
+sudo systemctl disable shadowsock-libevs@ss
+```
