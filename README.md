@@ -81,6 +81,67 @@ sudo systemctl enable shadowsock-libevs@ss
 ```
 
 ### 关闭开启启动
+
+## 终端设置代理
+
+安装privoxy
 ```bash
-sudo systemctl disable shadowsock-libevs@ss
+sudo pacman -Syu privoxy
+```
+
+### 全局模式
+
+```bash
+# 添加本地ss服务到配置文件
+sudo echo 'forward-socks5 / 127.0.0.1:1080 .' >> /etc/privoxy/config
+# Privoxy 默认监听端口是是8118
+export http_proxy=http://127.0.0.1:8118
+export https_proxy=http://127.0.0.1:8118
+export no_proxy=localhost
+# 启动服务
+sudo systemctl start privoxy.service
+# 开机启动
+sudo systemctl enable privoxy.service
+```
+
+### PAC模式
+
+```bash
+curl -4sSkLO https://raw.github.com/zfl9/gfwlist2privoxy/master/gfwlist2privoxy
+
+# 注意将 127.0.0.1:1080 替换为你的 socks5 地址
+bash gfwlist2privoxy 127.0.0.1:1080
+
+# 将 gfwlist.action 移动到 privoxy 配置文件目录
+mv -f gfwlist.action /etc/privoxy/
+
+# 应用 gfwlist.action 配置文件
+echo 'actionsfile gfwlist.action' >> /etc/privoxy/config
+
+# Privoxy 默认监听端口是是8118
+export http_proxy=http://127.0.0.1:8118
+export https_proxy=http://127.0.0.1:8118
+export no_proxy=localhost
+
+# 启动服务
+systemctl start privoxy.service
+```
+
+### 代理测试
+
+```bash
+# 访问各大网站，如果都有网页源码输出说明代理没问题
+curl -sL www.baidu.com
+curl -sL www.google.com
+curl -sL www.google.com.hk
+curl -sL www.google.co.jp
+curl -sL www.youtube.com
+curl -sL mail.google.com
+curl -sL facebook.com
+curl -sL twitter.com
+curl -sL www.wikipedia.org
+# 获取当前 IP 地址
+# 如果使用 privoxy 全局模式，则应该显示 ss 服务器的 IP
+# 如果使用 privoxy gfwlist模式，则应该显示本地公网 IP
+curl -sL ip.chinaz.com/getip.aspx
 ```
