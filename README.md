@@ -85,6 +85,7 @@ sudo systemctl enable shadowsock-libevs@ss
 ## 终端设置代理
 
 安装privoxy
+
 ```bash
 sudo pacman -Syu privoxy
 ```
@@ -108,23 +109,20 @@ sudo systemctl enable privoxy.service
 
 ```bash
 curl -4sSkLO https://raw.github.com/zfl9/gfwlist2privoxy/master/gfwlist2privoxy
-
 # 注意将 127.0.0.1:1080 替换为你的 socks5 地址
 bash gfwlist2privoxy 127.0.0.1:1080
-
 # 将 gfwlist.action 移动到 privoxy 配置文件目录
 mv -f gfwlist.action /etc/privoxy/
-
 # 应用 gfwlist.action 配置文件
 echo 'actionsfile gfwlist.action' >> /etc/privoxy/config
-
 # Privoxy 默认监听端口是是8118
 export http_proxy=http://127.0.0.1:8118
 export https_proxy=http://127.0.0.1:8118
 export no_proxy=localhost
-
 # 启动服务
-systemctl start privoxy.service
+sudo systemctl start privoxy.service
+# 开机启动
+sudo systemctl enable privoxy.service
 ```
 
 ### 代理测试
