@@ -4,38 +4,30 @@
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 
 每次VPS的IP被墙后, 在新部署VPS时都需要重新搭建shadowsocks  
-在这里统一一下所有用得到的命令, 方便以后查阅
+在这里统一了所有用得到的命令, 方便以后查阅
 
 关于VPS的基础知识等等都不在此赘述, 只包含用得到的命令
+
 ***
 
 ## server端
 
-### shadowsocks
-
-- 系统支持: CentOS6+ / Debian6+ / Ubuntu14+
-
 ```bash
+# shadowsocks
+# 系统支持: CentOS6+ / Debian6+ / Ubuntu14+
 wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
-```
 
-### shadowsocks-R
-
-- 系统支持: CentOS6+ / Debian6+ / Ubuntu14+
-
-```bash
+# shadowsocks-R
+# 系统支持: CentOS6+ / Debian6+ / Ubuntu14+
 wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh && chmod +x ssr.sh && bash ssr.sh
-```
 
-### BBR安装
-
-- BBR魔改版只支持Debian 8
-
-```bash
+# BBR安装
+# BBR魔改版只支持Debian 8
 wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh" && chmod +x tcp.sh && ./tcp.sh
+
+# 在删除内核环节, 选择**NO**
 ```
 
-在删除内核环节, 选择**NO**
 ***
 
 ## Client端(Arch Linux)
@@ -49,14 +41,12 @@ sudo pacman -Syu shadowsocks-libev
 ### 配置
 
 ```bash
+# 创建配置文件
 sudo touch /etc/shadowsocks/ss.json
-```
-
-```bash
+# 编辑
 sudo nano /etc/shadowsocks/ss.json
-```
 
-```test
+# 修改并添加文以下本
 {
     "server":"remote-shadowsocks-server-ip-addr",
     "server_port":443,
@@ -71,18 +61,15 @@ sudo nano /etc/shadowsocks/ss.json
 ### 启动
 
 ```bash
+# 启动
 sudo systemctl start shadowsocks-libev@ss
-```
-
-### 设置开机启动
-
-```bash
+# 设置开机启动
 sudo systemctl enable shadowsock-libevs@ss
+# 关闭开启启动
+sudo systemctl disable shadowsock-libevs@ss
 ```
 
-### 关闭开启启动
-
-## 终端设置代理
+## 让Linux终端走代理
 
 安装privoxy
 
@@ -108,8 +95,9 @@ sudo systemctl enable privoxy.service
 ### PAC模式
 
 ```bash
+# 下载PAC文件生成器
 curl -4sSkLO https://raw.github.com/zfl9/gfwlist2privoxy/master/gfwlist2privoxy
-# 注意将 127.0.0.1:1080 替换为你的 socks5 地址
+# 生成PAC文件  注意将 127.0.0.1:1080 替换为你的 socks5 地址
 bash gfwlist2privoxy 127.0.0.1:1080
 # 将 gfwlist.action 移动到 privoxy 配置文件目录
 mv -f gfwlist.action /etc/privoxy/
@@ -123,6 +111,8 @@ export no_proxy=localhost
 sudo systemctl start privoxy.service
 # 开机启动
 sudo systemctl enable privoxy.service
+# 关闭开机启动
+sudo systemctl disable privoxy.service
 ```
 
 ### 代理测试
@@ -143,3 +133,5 @@ curl -sL www.wikipedia.org
 # 如果使用 privoxy gfwlist模式，则应该显示本地公网 IP
 curl -sL ip.chinaz.com/getip.aspx
 ```
+
+Update: 2019年4月24日21:09:38
