@@ -28,8 +28,6 @@ wget -N --no-check-certificate "https://raw.githubusercontent.com/chiakge/Linux-
 # 在删除内核环节, 选择**NO**
 ```
 
-***
-
 ## Client端(Arch Linux)
 
 ### shadowsocks-libev安装
