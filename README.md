@@ -67,7 +67,7 @@ sudo systemctl enable shadowsock-libevs@ss
 sudo systemctl disable shadowsock-libevs@ss
 ```
 
-## 让Linux终端走代理
+## 让Linux终端走代理(貌似无效,以下暂时忽视吧)
 
 安装privoxy
 
